@@ -49,8 +49,6 @@
 		<spring-boot.version>2.1.6.RELEASE</spring-boot.version>
 		<spring-boot-bom.version>2.1.6.SP3-redhat-00001</spring-boot-bom.version>
 		<maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
-		<fabric8-maven-plugin.version>3.5.40</fabric8-maven-plugin.version>
-		<jkube.openshift.trimImageInContainerSpec>true</jkube.openshift.trimImageInContainerSpec>
 		<jkube.skip.build.pom>true</jkube.skip.build.pom>
 		<jkube.generator.from>
 			registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:${openjdk18-openshift.version}
@@ -158,6 +156,13 @@
 						<groupId>org.eclipse.jkube</groupId>
 						<artifactId>openshift-maven-plugin</artifactId>
 						<version>1.0.0-rc-1</version>
+						<configuration>
+							<resources>
+							  <env>
+								<JAVA_APP_JAR>/deployments/${project.artifactId}-${project.version}-exec.jar</JAVA_APP_JAR>
+							  </env>
+							</resources>
+  					    </configuration>
 						<executions>
 							<execution>
 								<id>fmp</id>
